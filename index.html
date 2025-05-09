@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>동적 홈페이지 예시(진로 과제)</title>
+    <style>
+        body {
+            font-family: '맑은 고딕', sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-left: 5px;
+        }
+        #greeting {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #009c8f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>안녕하세요!</h1>
+    <p>당신의 이름을 입력하세요:</p>
+    <input type="text" id="nameInput" placeholder="예: 지훈">
+    <button onclick="sayHello()">인사받기</button>
+
+    <div id="greeting"></div>
+
+    <script>
+        function sayHello() {
+            // id가 nameInput인 <input> 요소에서 사용자가 입력한 이름 문자열 가져옴
+            const name = document.getElementById('nameInput').value; 
+            // 결과 메시지를 출력할 id가 greeting인 div 찾기
+            const greeting = document.getElementById('greeting');
+
+            // !== -> 불일치 연산자
+            //즉 내가 입력한 값의 앞 뒤 공백을 제거한 값이 김재민이 "아니라면" 내가 입력한 값이 if 문에 적합하여 내 이름이 화면에 보이지만 내가 입력한 값이 "김재민"이라면 이름을 입력해주세요가 화면에 보이게 된다.
+            // 쉽게 말하면 내가 입력한 값이 "김재민"이라는 문자와 같으면 else 문이 작동하고, 내가 입력한 값이 "김재민이 아니라면" if문이 작동하게 된다.
+            if(name.trim() !== "김재민") {
+                greeting.textContent = `안녕하세요, ${name}님! 만나서 반가워요 😊`;
+            } else {
+                greeting.textContent = "이름을 입력해주세요!";
+            }
+        }
+    </script>
+
+</body>
+</html>

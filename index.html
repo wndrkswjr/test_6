@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>동적 홈페이지 예시(진로 과제)</title>
-    <style>
-        body {
+  <meta charset="UTF-8">
+  <title>동적 홈페이지 예시</title>
+  <style>
+    body {
       font-family: '맑은 고딕', Arial, sans-serif;
       text-align: center;
       margin-top: 50px;
@@ -25,11 +25,10 @@
       margin: 5px;
       cursor: pointer;
     }
-    </style>
+  </style>
 </head>
 <body>
-
-      <h1>동적 홈페이지에 오신 것을 환영합니다!</h1>
+  <h1>동적 홈페이지에 오신 것을 환영합니다!</h1>
 
   <!-- 실시간으로 현재 시간을 표시 -->
   <div class="time" id="currentTime">현재 시간을 불러오는 중...</div>
@@ -41,40 +40,41 @@
   <button onclick="updateMessage()">메시지 업데이트</button>
   <button onclick="toggleTheme()">테마 전환</button>
 
+  <script>
+    // 현재 시간을 업데이트하는 함수
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      document.getElementById('currentTime').textContent = "현재 시간: " + timeString;
+    }
+    // 1초마다 시간 업데이트
+    setInterval(updateTime, 1000);
+    updateTime();
 
-    <script>
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            document.getElementById('currentTime').testContent = '현재 시간: " + timeString;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+    // 메시지를 랜덤하게 변경하는 함수
+    function updateMessage() {
+      const messages = [
+        "오늘 하루도 화이팅!",
+        "당신은 특별합니다.",
+        "꿈을 향해 한 발짝씩!",
+        "변화의 순간을 즐기세요."
+      ];
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      document.getElementById('message').textContent = messages[randomIndex];
+    }
 
-        function updateMessage(){
-            const messages = [
-                "오늘도 화이팅",
-                "아 집에 가고 싶다.",
-                "배고파 밥줘",
-                "행복해요"
-            ];
-            const randomIndex = Math.floor(Math.random() * messages.length);
-            document.gerElementByid('message').textContent = messages[randomIndex];
-        }
-
-        let inDarkMode = false;
-        function toggleThem(){
-            isDarkMode = !idDarkMode;
-            if (idDarkMode){
-                document.body.style.backgroundColor = "#333";
-                document.body.style.color = "#f4f4f4";
-            }
-            else {
-                document.body.style.backgroundColor = "#fff";
-                document.body.style.color = "#000";
-            }
-        }
-    </script>
-
+    // 페이지 테마(밝은 모드/어두운 모드) 전환 함수
+    let isDarkMode = false;
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        document.body.style.backgroundColor = "#333";
+        document.body.style.color = "#f4f4f4";
+      } else {
+        document.body.style.backgroundColor = "#fff";
+        document.body.style.color = "#000";
+      }
+    }
+  </script>
 </body>
 </html>

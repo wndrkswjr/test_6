@@ -25,10 +25,16 @@
       margin: 5px;
       cursor: pointer;
     }
+
+    #nameInput{
+      width:152px;
+    }
   </style>
 </head>
 <body>
   <h1>동적 홈페이지에 오신 것을 환영합니다!</h1>
+
+  <div id = "age"></div>
 
   <!-- 실시간으로 현재 시간을 표시 -->
   <div class="time" id="currentTime">현재 시간을 불러오는 중...</div>
@@ -37,10 +43,47 @@
   <div id="message">버튼을 눌러 메시지를 확인해보세요!</div>
 
   <!-- 메시지를 업데이트하는 버튼과 테마 전환 버튼 -->
-  <button onclick="updateMessage()">메시지 업데이트</button>
+  <button onclick ="updateMessage()">메시지 업데이트</button>
   <button onclick="toggleTheme()">테마 전환</button>
 
+  <br>
+  <input type="text" id="age_input" placeholder="태어난 년-월-일">
+  <button onclick="age_calculate()">생일 입력</button>
+
+  <div id = "age_result"></div>
+
+
+
   <script>
+
+    function age_calculate() {
+        
+      const age_input = document.getElementById('age_input').value;
+
+      const age_input_day = new Date(age_input)
+      const today = new Date();
+
+      const diffTime = today - age_input_day;
+      const diffDays = Math.floor(diffTime / (1000*60*60*24));
+      const diffYear = Math.floor(diffDays / 365);
+
+      document.getElementById("age_result").textContent = "현재 나이: " + diffYear
+    }
+
+    // ----------------------------------
+
+
+    const birthDate = new Date("2007-10-07");
+    const today = new Date();
+
+    const diffTime = today - birthDate;
+    const diffDays = Math.floor(diffTime / (1000*60*60*24));
+    const diffYear = Math.floor(diffDays / 365);
+
+    document.getElementById("age").textContent = "현재 나이: " + diffYear
+
+    // ----------------------------------
+
     // 현재 시간을 업데이트하는 함수
     function updateTime() {
       const now = new Date();
@@ -48,8 +91,11 @@
       document.getElementById('currentTime').textContent = "현재 시간: " + timeString;
     }
     // 1초마다 시간 업데이트
-    setInterval(updateTime, 1000);
+    setInterval(updateTime);
     updateTime();
+
+    // ----------------------------------
+
 
     // 메시지를 랜덤하게 변경하는 함수
     function updateMessage() {
@@ -63,6 +109,9 @@
       document.getElementById('message').textContent = messages[randomIndex];
     }
 
+    // ----------------------------------
+
+    
     // 페이지 테마(밝은 모드/어두운 모드) 전환 함수
     let isDarkMode = false;
     function toggleTheme() {

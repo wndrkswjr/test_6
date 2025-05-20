@@ -29,15 +29,28 @@
     #nameInput{
       width:152px;
     }
+
+    #line{
+      border:1px solid gray;
+    }
   </style>
 </head>
 <body>
   <h1>동적 홈페이지에 오신 것을 환영합니다!</h1>
+  
+  <div id = "d_day_result"></div>
 
   <div id = "age"></div>
 
   <!-- 실시간으로 현재 시간을 표시 -->
   <div class="time" id="currentTime">현재 시간을 불러오는 중...</div>
+  <br>
+
+
+  <div id = "line"></div>
+  <br>
+
+  <h1>테스트 부분 입니다.</h1>
 
   <!-- 랜덤 메시지가 출력되는 영역 -->
   <div id="message">버튼을 눌러 메시지를 확인해보세요!</div>
@@ -55,6 +68,16 @@
 
 
   <script>
+  const start_day = new Date();
+  const d_day = new Date("2024-11-14");  // 또는 new Date(2024, 10, 14) → 11월은 10 (0부터 시작)
+
+  const diff_d_day = d_day - start_day;
+  const diff_day = Math.ceil(diff_d_day / (1000 * 60 * 60 * 24));
+
+  document.getElementById("d_day_result").textContent = "수능 D" + diff_day;
+
+    // ----------------------------------
+
 
     function age_calculate() {
         
